@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://zanezhao0708.github.io</id>
+    <title>舞秋风Blog</title>
+    <updated>2025-09-05T06:50:19.073Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://zanezhao0708.github.io"/>
+    <link rel="self" href="https://zanezhao0708.github.io/atom.xml"/>
+    <subtitle>Wanna change and make the World better</subtitle>
+    <logo>https://zanezhao0708.github.io/images/avatar.png</logo>
+    <icon>https://zanezhao0708.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2025, 舞秋风Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[计算机网络总结]]></title>
+        <id>https://zanezhao0708.github.io/post/ji-suan-ji-wang-luo-zong-jie/</id>
+        <link href="https://zanezhao0708.github.io/post/ji-suan-ji-wang-luo-zong-jie/">
+        </link>
+        <updated>2025-07-01T07:15:11.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文章记录学习计算机网络过程时所遇到的知识点，会在后续的学习中持续更新</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文章记录学习计算机网络过程时所遇到的知识点，会在后续的学习中持续更新</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[计算机常用量化指标]]></title>
+        <id>https://zanezhao0708.github.io/post/ji-suan-ji-chang-yong-liang-hua-zhi-biao/</id>
+        <link href="https://zanezhao0708.github.io/post/ji-suan-ji-chang-yong-liang-hua-zhi-biao/">
+        </link>
+        <updated>2024-09-03T02:09:31.000Z</updated>
+        <summary type="html"><![CDATA[<p>主要用于计算机器学习中结果的量化</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>主要用于计算机器学习中结果的量化</p>
+]]></content>
+    </entry>
+</feed>

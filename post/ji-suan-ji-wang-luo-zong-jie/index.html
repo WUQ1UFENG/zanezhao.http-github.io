@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>舞秋风Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/media/mdui/css/mdui.min.css">
+    <link rel="stylesheet" href="/media/css/post.css">
+    <link rel="stylesheet" href="/media/live2d/css/live2d.css" />
+    
+</head>
+<body class=" mdui-appbar-with-toolbar  mdui-theme-primary-pink mdui-theme-accent-pink">
+<header class="mdui-toolbar mdui-color-pink mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide" style="z-index: 1000">
+    <a href="javascript:;" mdui-drawer="{target: '#left-drawer',overlay:true}" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+    <span class="mdui-typo-title">舞秋风Blog</span>
+    <div class="mdui-toolbar-spacer"></div>
+<!--    <a href="javascript:history.go(0);" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
+</header>
+
+<div class="mdui-drawer mdui-color-white mdui-drawer-full-height mdui-drawer-close" id="left-drawer">
+    <ul class="mdui-list">
+        <li class="mdui-subheader">菜单</li>
+        
+        <li class="mdui-list-item mdui-ripple">
+            <a href="/" class="mdui-list-item-content">首页</a>
+        </li>
+        
+        <li class="mdui-list-item mdui-ripple">
+            <a href="/archives" class="mdui-list-item-content">归档</a>
+        </li>
+        
+        <li class="mdui-list-item mdui-ripple">
+            <a href="/tags" class="mdui-list-item-content">标签</a>
+        </li>
+        
+    </ul>
+</div>
+
+<div id="content" class="site-content">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+            <article id="post-1270" class="post-1270 post type-post status-publish format-standard hentry category-90 category-129 tag-149">
+                <header class="entry-header">
+                    <h1 class="entry-title">计算机网络总结</h1>
+                    <p class="entry-census">发布于 2025-07-01</p>
+                    <hr>
+                </header>
+                <div class="neko">
+                    <p>本文章记录学习计算机网络过程时所遇到的知识点，会在后续的学习中持续更新</p>
+<!-- more -->
+<h1 id="概述章节">概述章节</h1>
+<h2 id="1-网络-互联网-因特网的区别和关系">1、网络、互联网、因特网的区别和关系</h2>
+<p>若干节点与链路（有线或无线）形成网络，而网络之间通过路由器或交换机相互链接形成互联网（是“网络的网络”），其中因特网是世界上最大的互联网。<br>
+第一个分组交换网 ARPANET，基于存储转发技术。</p>
+<h2 id="2-三种交换方式">2、三种交换方式</h2>
+<p>分别为电路交换、分组交换、报文交换</p>
+<h3 id="1-电路交换">1、电路交换</h3>
+<p>电路交换的主要流程是：建立连接-&gt;通话-&gt;释放连接。交换在资源分配的角度上可以认为是以某种动态的方式分配传输路线的资源。但是在实际的计算机使用中，例如 QQ 我们往往希望信息通信保持一直在线，所以这种交换方式往往会占用传输路线，所以用来传输计算机数据时往往传输效率非常低。但反正如果需要连续传输很多数据，同时传输时间远远大于建立连接时间时，我们往往认为这时电路交换具有较高的传输效率</p>
+<h3 id="2-分组交换">2、分组交换</h3>
+<p>在因特网最开始的时候就是采用的基于存储转发技术的分组交换。源主机将整块的报文分为多个小块发送出去，并在每个小数据段前加上首部，形成一个个分组。目的主机收到这些分组后将他们还原成原始数据块。要把他们分块的原因往往是因为：报文太长则对交换节点的缓存容量有很大的需求。<br>
+分组将先被发送到分组交换机，然后缓存下来，从首部提取出目的地址，按照目的地址查找自己的转发表，然后把分组转发给下一个分组交换机。如果将互联网看作是一个分组交换网，那么路由器 R1～R5 就是分组交换节点，主机 H1～H5 通过分组交换网进行通信。<br>
+相比电路交换，分组交换有很强的生存性，且有较强的通信线路利用性。但是也有缺点：首部字段增加类额外的开销、路由器缓存转发使得网络有一定的延时、通信量大的时候会造成一定的堵塞、可能会出现一定的失序（顺序混乱）和丢失。</p>
+<h3 id="3-报文交换">3、报文交换</h3>
+<p>报文交换与分组交换的区别就是报文是整段发送。这会使得转发延时多很多，需要更大的缓存空间。</p>
+<h2 id="3-计算机网络的性能指标">3、计算机网络的性能指标</h2>
+<p>注意：字节是以 2 为底数，比特是以 10 为底数。在实际应用中很多没有区分比特与字节，导致产生容量差别，比如固态硬盘的厂家标称为 250GB 但实际只有 232GB。</p>
+<h3 id="1-速率">1、速率</h3>
+<p>速率是指数据的传输速率（即每秒传输多少个比特），也称为数据率或比特率。</p>
+<h3 id="2-带宽">2、带宽</h3>
+<p>表示网络的通行路线所能传送数据的能力，或者指的是某个信号在各种不同频率成分所占的频率范围。由香农公式可知：线路的“频率带宽”越宽，所传输数据的“最高数据率”也越高。需要注意的是：主机的接口速率、线路带宽、交换机或路由器的接口速率遵循“木桶效应”</p>
+<h3 id="3-吞吐量">3、吞吐量</h3>
+<p>在单位时间内通过某个网络或接口的实际数据量。当用户计算机中与网络通信的相关应用进程增多时，吞吐量也会随之增大，但吞吐量会受到网络宽带的限制。</p>
+<h3 id="4-时延">4、时延</h3>
+<p>网络中的时延。主要由发送时延（传输时延）、传播时延、排队时延以及处理时延四部分组成。</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">传</mi><mi mathvariant="normal">播</mi><mi mathvariant="normal">时</mi><mi mathvariant="normal">延</mi><mo>=</mo><mfrac><mrow><mi mathvariant="normal">分</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">长</mi><mi mathvariant="normal">度</mi><mi mathvariant="normal">（</mi><mi>b</mi><mi mathvariant="normal">）</mi></mrow><mrow><mi mathvariant="normal">发</mi><mi mathvariant="normal">送</mi><mi mathvariant="normal">速</mi><mi mathvariant="normal">率</mi><mi mathvariant="normal">（</mi><mi>b</mi><mi mathvariant="normal">/</mi><mi>s</mi><mi mathvariant="normal">）</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">传播时延=\frac{分组长度（b）}{发送速率（b/s）}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">播</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">延</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.30744em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">发</span><span class="mord cjk_fallback">送</span><span class="mord cjk_fallback">速</span><span class="mord cjk_fallback">率</span><span class="mord cjk_fallback">（</span><span class="mord mathdefault">b</span><span class="mord">/</span><span class="mord mathdefault">s</span><span class="mord cjk_fallback">）</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">分</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">长</span><span class="mord cjk_fallback">度</span><span class="mord cjk_fallback">（</span><span class="mord mathdefault">b</span><span class="mord cjk_fallback">）</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">传</mi><mi mathvariant="normal">播</mi><mi mathvariant="normal">时</mi><mi mathvariant="normal">延</mi><mo>=</mo><mfrac><mrow><mi mathvariant="normal">链</mi><mi mathvariant="normal">路</mi><mi mathvariant="normal">长</mi><mi mathvariant="normal">度</mi><mi mathvariant="normal">（</mi><mi>m</mi><mi mathvariant="normal">）</mi></mrow><mrow><mi mathvariant="normal">传</mi><mi mathvariant="normal">播</mi><mi mathvariant="normal">速</mi><mi mathvariant="normal">度</mi><mi mathvariant="normal">（</mi><mi>m</mi><mi mathvariant="normal">/</mi><mi>s</mi><mi mathvariant="normal">）</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">传播时延=\frac{链路长度（m）}{传播速度（m/s）}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">播</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">延</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.0435600000000003em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.10756em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">播</span><span class="mord cjk_fallback">速</span><span class="mord cjk_fallback">度</span><span class="mord cjk_fallback">（</span><span class="mord mathdefault">m</span><span class="mord">/</span><span class="mord mathdefault">s</span><span class="mord cjk_fallback">）</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">链</span><span class="mord cjk_fallback">路</span><span class="mord cjk_fallback">长</span><span class="mord cjk_fallback">度</span><span class="mord cjk_fallback">（</span><span class="mord mathdefault">m</span><span class="mord cjk_fallback">）</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>排队延时与处理延时没有准确的公式。<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">时</mi><mi mathvariant="normal">延</mi><mi mathvariant="normal">带</mi><mi mathvariant="normal">宽</mi><mi mathvariant="normal">积</mi><mo>=</mo><mi mathvariant="normal">传</mi><mi mathvariant="normal">播</mi><mi mathvariant="normal">延</mi><mi mathvariant="normal">时</mi><mi mathvariant="normal">（</mi><mi>s</mi><mi mathvariant="normal">）</mi><mo>∗</mo><mi mathvariant="normal">带</mi><mi mathvariant="normal">宽</mi><mi mathvariant="normal">（</mi><mi>b</mi><mi mathvariant="normal">/</mi><mi>s</mi><mi mathvariant="normal">）</mi></mrow><annotation encoding="application/x-tex">时延带宽积=传播延时（s）*带宽（b/s）</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">延</span><span class="mord cjk_fallback">带</span><span class="mord cjk_fallback">宽</span><span class="mord cjk_fallback">积</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">播</span><span class="mord cjk_fallback">延</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">（</span><span class="mord mathdefault">s</span><span class="mord cjk_fallback">）</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">带</span><span class="mord cjk_fallback">宽</span><span class="mord cjk_fallback">（</span><span class="mord mathdefault">b</span><span class="mord">/</span><span class="mord mathdefault">s</span><span class="mord cjk_fallback">）</span></span></span></span> 用来表示这个通道的容积。<br>
+<img src="https://zanezhao0708.github.io/post-images/1756866799695.png" alt="" loading="lazy"></p>
+<h3 id="5-利用率">5、利用率</h3>
+<p>链路的利用率表示有数据通过的链路占总链路的比例。完全空闲的链路利用率为 0。网络利用率指所有链路利用率的加权平均。<br>
+根据排队理论可知，当利用率变大时该链路的时延就会变得很大。时延 D 与利用率 U 可以表示为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mo>=</mo><mfrac><msub><mi>D</mi><mn>0</mn></msub><mrow><mn>1</mn><mo>−</mo><mi>U</mi></mrow></mfrac><mi mathvariant="normal">（</mi><msub><mi>D</mi><mn>0</mn></msub><mi mathvariant="normal">为</mi><mi mathvariant="normal">完</mi><mi mathvariant="normal">全</mi><mi mathvariant="normal">空</mi><mi mathvariant="normal">闲</mi><mi mathvariant="normal">下</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">时</mi><mi mathvariant="normal">延</mi><mi mathvariant="normal">）</mi></mrow><annotation encoding="application/x-tex">D=\frac{D_0}{1-U }（D_0 为完全空闲下的时延）
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord cjk_fallback">（</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">为</span><span class="mord cjk_fallback">完</span><span class="mord cjk_fallback">全</span><span class="mord cjk_fallback">空</span><span class="mord cjk_fallback">闲</span><span class="mord cjk_fallback">下</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">延</span><span class="mord cjk_fallback">）</span></span></span></span></span></p>
+<p>所以网络的利用率不是越大越好。ISP 往往会控制信道利用率不超过 50%</p>
+<h3 id="6-丢包率">6、丢包率</h3>
+<p>指在一定时间范围内，传输过程中丢失的分组数量与总分组数量的比例。丢包往往有两种可能：传输过程中出现误码而被丢弃或者出于主动丢弃策略。丢包率往往可以反映网络拥挤情况。</p>
+<h2 id="4-常见的三种网络体系结构">4、常见的三种网络体系结构</h2>
+<h3 id="1-osi开放系统互连参考模型">1、OSI（开放系统互连参考模型）</h3>
+<p>是一个七层协议的体系结构：物理层-&gt;数据链路层-&gt;网络层-&gt;运输层-&gt;会话层-&gt;表示层-&gt;应用层<br>
+这是个理想化的模型，但却没有商业驱动力，实现起来十分复杂且运行效率低，层次划分也不够合理导致有些功能在多个层次重复出现。能够占据市场的往往才是标准，但 OSI 入场太慢了</p>
+<h3 id="2-tcpip-参考模型">2、TCP/IP 参考模型</h3>
+<p>这是用户范围最广、用户数量最多的参考模型：网络接口层-&gt;网络层-&gt;运输层-&gt;应用层<br>
+它在网络接口层上并没有规定什么具体的内容，这样做的目的是可以互联全世界各种不同的网络接口。因此 TCP/IP 体系在本质上只有上面的三层。<br>
+IP（网际协议）是网际层的核心协议。TCP（传输控制协议，可向应用层提供可靠传输的服务）和 UDP（用户数据报协议，可向应用层提供不可靠传输的服务）是运输层两个重要协议，IP 协议可以将不同的网络接口进行互联，并向上层提供网络互联服务。</p>
+<h3 id="3-原理参考模型">3、原理参考模型</h3>
+<p>更有利于教学和学习：物理层-&gt;数据链路层-&gt;网络层-&gt;运输层-&gt;应用层<img src="https://zanezhao0708.github.io/post-images/1756866811792.png" alt="" loading="lazy"></p>
+<h2 id="5-计算机网络体系结构的分层思想">5、计算机网络体系结构的分层思想</h2>
+<h3 id="1-物理层">1、物理层】</h3>
+<p>1）采用什么传输媒体（同轴缆线、光纤、光缆、自由空间等）。2）采用什么物理接口（计算机主板上的以太网接口等）。3）采用什么信号（比特 0 和 1）<br>
+严格来说传输媒体并不算物理层的范畴，它并不算在计算机网络中的体系中，另外计算机网络中的传输信号也不是我们举例的简单数字基带信号</p>
+<h3 id="2-数据链路层">2、数据链路层</h3>
+<p>1）如何标识网络中的各主机。2）如何区分出地址和数据。3）如何协调各主机争用总线</p>
+<h3 id="3-网络层">3、网络层</h3>
+<p>1）如何标识互联网中各网络以及网络中的主机。2）路由器如何转发分组和进行路由选择</p>
+<h3 id="4-运输层">4、运输层</h3>
+<p>1）如何标识主机中与网络通信相关的应用进程。2）如何处理传输差错</p>
+<h3 id="5-应用层">5、应用层</h3>
+<p>解决通过应用进程的交互来实现特定的网络应用问题</p>
+<p>在 OSI 七层网络中：<br>
+物理层：负责在物理媒介上传输原始比特流，定义了连接主机的硬件设备和传输媒介的规范。<br>
+数据链路层：提供点对点的数据传输服务，负责将原始比特流转换为数据帧，并检测和纠正传输中出现的错误。<br>
+网络层：负责数据包的路由和转发，以及网络中的寻址和拥塞控制。<br>
+传输层：为应用程序提供端到端的数据传输服务，负责数据的分段、传输控制、错误恢复和流量控制。<br>
+会话层：管理应用程序之间的通信会话，负责建立、维护和终止会话。<br>
+表示层：负责数据的格式化、加密和压缩，以确保数据在不同系统之间的交换是有效的和安全的。<br>
+应用层：提供用户接口和应用程序之间的通信服务，用户可以访问各种网络应用程序。</p>
+<h2 id="6-计算机网络体系结构中的专业术语">6、计算机网络体系结构中的专业术语</h2>
+<h3 id="1-实体与对等实体">1、实体与对等实体</h3>
+<p>实体是指可发送或接收信息的硬件或软件进程。对等实体则指通信双方相同层次的实体。</p>
+<h3 id="2-协议">2、协议</h3>
+<p>协议是指控制两个对等实体在水平方向上进行逻辑通信的规则集合。例如 IP 协议，TCP、UDP 协议，HTTP 协议对等。这里的通信是逻辑通信，是假设出来的，这样的目的是为了方便单独研究计算机网络体系单独的某一层。<br>
+计算机网络协议有三要素：语法（信息格式）、语义（需要完成的操作）、同步（双方操作顺序）</p>
+<h3 id="3-服务">3、服务</h3>
+<p>两个对等实体在水平方向的逻辑通信使得本层能够向上一层提供服务。下层的协议对于上层是隐形的。在同一系统中相邻两层的实体交换信息的逻辑接口被称为服务访问点，用于区分不同的服务类型。上层要使用下层的服务，必须通过与下层交换一些命令（服务原语）<img src="https://zanezhao0708.github.io/post-images/1756866819849.png" alt="" loading="lazy"></p>
+<h1 id="物理层"><strong>物理层</strong></h1>
+<h2 id="0-数字电路与模拟电路">0、数字电路与模拟电路</h2>
+<figure data-type="image" tabindex="1"><img src="https://zanezhao0708.github.io/post-images/1756867168701.webp" alt="" loading="lazy"></figure>
+<h2 id="1-物理层接口特性">1、物理层接口特性</h2>
+<h3 id="1-机械特性">1、机械特性</h3>
+<p>规定了所有接线器的形状与尺寸、引脚数目和排列以及固定和锁定装置</p>
+<h3 id="2-电气特性">2、电气特性</h3>
+<p>规定了在接口电缆的各条线上传输比特流时，信号电压的范围、抗阻匹配情况以及传输速率和距离限制等。</p>
+<h3 id="3-功能特性">3、功能特性</h3>
+<p>规定接口电缆的各条信号线的作用。信号线一般分为：数据线、控制线、时钟线以及地线</p>
+<h3 id="4-过程特性">4、过程特性</h3>
+<p>规定了在信号线上进行比特流传输的一组操作过程，包括信号间的时序关系。</p>
+<h2 id="2-传输媒体">2、传输媒体</h2>
+<h3 id="1-导向型传输媒体">1、导向型传输媒体</h3>
+<p>1）同轴电缆：常用做局域网传输介质，由导体、绝缘层、外屏蔽层(使得具有抗干扰性，用于高速率数据传输)以及外部保护组成。叫做同轴电缆是因为横切面都是共圆心的。电阻 50Ω的基带同轴电缆用于数字传输（早期局域网中广泛使用）、75Ω的宽带同轴电缆，用于模拟传输（目前用于有线电视的接入）<br>
+2）双绞线：两根相互绝缘的铜线按一定密度互相绞合（绞合可以减少相邻导线间的电磁干扰，抵御部分来自外界的电磁干扰）。双绞线电缆由多对双绞线一起包在一个绝缘保护套里面。同样为了抗电磁干扰，会用金属丝在多对双绞线外面编织一层屏蔽层，就构成屏蔽双绞线。<br>
+在双绞线上信号频率升高会使得信号衰减。为了降低衰减，可以使用更粗的双绞线，会增加成本。所以为了降低成本，线对之间的绞合度，线对内两根导线的绞合度都要经过设计。一般来说双绞线通信距离为几到十几千米。对于模拟传输，距离太长需要放大器设备，对于数字电路，距离太长需要中继器设备<br>
+3）光纤：利用光脉冲在光纤（由纤芯和包层两部分构成）中传递来进行通信的（有光脉冲相当于比特 1，无光脉冲相当于比特 0），原理是光由密介质（高折射率）到疏介质（低折射率）达到一定的角度会发生全反射。由于可见光的频率非常高，因此一个光纤通信系统的传输带宽远远大于其他传输系统。<br>
+光纤传输系统需要在发送端采用发光二极管或半导体激光器，在电脉冲的作用下产生光脉冲；在接受端采用光电二极管或激光检波器，将检测到的光脉冲还原成电脉冲。<br>
+色散（模式色散、材料色散以及波导色散）对光纤通信会有影响：多条入射角的光波在同一光纤中传输，这种光纤称为多模光纤（会出现脉冲展宽，造成信号失真，因此多模光纤一般只适用于建筑物内的近距离传输），如果将光纤的直径减小到一个光的波长，使光可以一直向前传播而不会发生多次反射，这种光纤被称为单模光纤（材料色散和波导色散大小相等方向相反，两者正好抵消，适合长距离传输且衰减更小）。单模光纤成本更高，只能使用半导体激光器，而不能使用便宜的发光二极管。<br>
+光纤的优点：通信容量大、抗雷电和电磁干扰性能高（尤其大电流脉冲干扰）、传输损耗小、无振动干扰、保密性好、体积小重量轻</p>
+<h3 id="2-非导向性传输媒体">2、非导向性传输媒体</h3>
+<p>利用自由空间进行无线通信是在运动中通信的唯一手段。紫外线、X 射线、γ射线等高频波段（很难产生和调制且有害）、频率非常低的波段都不用于通信。一般是无线电波和微波。<br>
+1、无线电波<br>
+工作原理：使用天线向空间中所有方向（全向性）辐射电磁波。由于其频率较低，具有很强的穿透能力，可以穿透墙壁等障碍物，实现非视距通信。<br>
+优点：覆盖范围广，穿透性好，无需精确对准，非常适合移动通信和广播。<br>
+缺点：带宽较低，易受其他电子设备的电磁干扰，同时由于其广播特性，传输的信号容易被窃听，安全性较差。信号传播会受建筑物等影响产生多径衰落效应。<br>
+应用：调幅(AM)和调频(FM)广播、电视广播、无线对讲机、车库门遥控器等。<br>
+2、微波<br>
+工作原理：频率远高于无线电波，其通信方式主要是视距通信 (Line-of-Sight, LoS)，信号沿直线传播，不能穿透障碍物。通常使用抛物面等定向天线进行点对点传输。<br>
+分类：<br>
+地面微波：在地面上建立一系列微波中继站，通常每隔几十公里一个，进行长距离通信。<br>
+卫星微波：利用地球同步卫星作为空中的中继站，将地面站的信号放大并转发到另一个地面站，可实现跨越大洋的全球通信。<br>
+优点：频带极宽，通信容量大；受地面障碍物影响小（尤其是卫星微波）。<br>
+缺点：必须保证视距，建设成本高（中继站或卫星）；信号会受恶劣天气（如大雨）影响而衰减；卫星通信存在较长的传播时延。<br>
+应用：电信运营商长途骨干网、移动通信（4G/5G）、Wi-Fi（2.4GHz/5GHz 频段）、蓝牙、GPS 全球定位系统、卫星电视。<br>
+3、红外线<br>
+工作原理：使用红外发光二极管(LED)将电信号转换为红外光波进行短距离、高定向性的视距通信。<br>
+优点：无需申请频谱使用许可，成本极低；由于不能穿透墙壁，使得在同一房间内的通信具有很好的保密性，不会干扰到隔壁房间；功耗低。<br>
+缺点：传输距离非常短，数据率较低；方向性强，必须对准接收端；易受强光源（如太阳光）和其他热源的干扰。<br>
+应用：电视/空调遥控器、早期的笔记本电脑和手机间的短距离数据交换（IrDA 协议）、一些无线鼠标/键盘。<br>
+4、激光<br>
+工作原理：将激光作为载体，把经过调制的激光束经过大气进行点对点的视距传输。可以看作是“无线版的光纤”。<br>
+优点：拥有与光纤媲美的极高带宽和通信速率；方向性极强，光束非常窄，使得窃听极其困难，保密性极高。<br>
+缺点：对准要求极其苛刻，发射器和接收器必须精确对齐；对大气状况非常敏感，雾、雨、雪、灰尘甚至空气的抖动都会严重干扰或阻断信号。<br>
+应用：主要用于连接地理位置邻近但铺设光纤困难或昂贵的两栋建筑物之间的临时或永久高速通信链路；星际通信（太空中没有大气干扰）。<br>
+5、可见光<br>
+工作原理：利用发光二极管(LED)灯发出的可见光，通过人眼无法察觉的高速明暗闪烁来传输数据，也常被称为 Li-Fi (Light Fidelity)。<br>
+优点：频谱资源极其丰富且免费（整个可见光频谱都可使用）；可利用现有的照明设备（如 LED 灯）作为网络接入点；无电磁辐射，可在医院、机舱等对电磁波敏感的场所安全使用；与红外线类似，不穿墙的特性提供了很高的物理层安全性。<br>
+缺点：技术尚在发展中；传输距离受限，且必须是视距；易受障碍物和强环境光干扰；上行链路（从设备传回灯具）的实现较为困难。<br>
+应用：高保密性要求的室内无线网络、水下通信（无线电波在水中衰减严重）、智能交通系统（车与车、车与交通灯之间的通信）</p>
+<h2 id="3-串行传输与并行传输">3、串行传输与并行传输</h2>
+<p>并行传输比串行传输快 n 倍，n 主要取决于并行传输采用的数据传输线路的数量，也称为数据总线宽度，常用的位数有（8 位、16 位、32 位以及 64 位），但并行传输的成本高，一般只用于近距离传输。<br>
+计算机的网卡同时具有串、并行传输：计算机内部的网卡起到一个串、并行传输转换的功能。<br>
+<img src="https://zanezhao0708.github.io/post-images/1756867192690.webp" alt="" loading="lazy"></p>
+<h2 id="4-同步传输与异步传输">4、同步传输与异步传输</h2>
+<p>1、同步传输<br>
+以比特为传输单位，数据块以比特流的形式传输，字节间没有间隔且没有起始、终结符，就要求双方对表示比特的信号的时间长度达成一致，为了实现双方实现收发的时钟同步，可以采取以下两种办法：<br>
+1）外同步：增加一条时钟线，双方发送信号的同时，还要发送一路时钟信号，双方对照时钟进行信号采样。<br>
+2）内同步：发送端将时钟信号编码到发送数据中一起发送，如曼彻斯特编码与差分曼彻斯特编码。<br>
+2、异步传输<br>
+异步指的是字节间的时间间隔不固定，但字节内的比特仍然要同步，信号持续的时间相同。此外接收端只在起始处对字节内的比特实现同步，一般要给每个字节添加起止位和结束位。<br>
+<img src="https://zanezhao0708.github.io/post-images/1756867216032.webp" alt="" loading="lazy"></p>
+<h2 id="5-编码和调制的基本概念">5、编码和调制的基本概念</h2>
+<h3 id="1-消息-数据与信号">1、消息、数据与信号</h3>
+<p>计算机处理、传输的图片、文字、音频等内容统称为信息，信息传入计算机后变成了有意义的符号序列，被称为数据（运送信息的实体，如二进制），计算机的网卡将二进制变换成相应的信号，发送到传输媒体，也就是说可将信号看作数据的电磁表现。</p>
+<h3 id="2-基带信号">2、基带信号</h3>
+<p>由信源发出的原始信号称为基带信号（未经任何处理的、最直接的电信号），也就是基本频带信号。基带信号往往包含较多低频成分，甚至包含直流部分，许多信道并不能直接传输这种低频分量或直流分量（很多有线信道（如电话线）在电路中使用了电容器或变压器等元件，这些元件的物理特性是“隔直流，通交流”）。而且会产生信道共享与干扰，一个城市里所有的广播电台、手机、Wi-Fi设备，如果都直接把自己的基带信号（比如都在 0-20kHz 范围内）所有信号会混杂在一起。因此要对基带信号进行调制。</p>
+<h3 id="3-调制与编码">3、调制与编码</h3>
+<p>1）基带调制（编码）：调制后的信号仍然是数字基带信号，只不过是换成了另一种形式的数字信号<br>
+2）带通调制：将原频率范围搬到较高的频段，并转换为模拟信号<br>
+4、码元<br>
+对于模拟信号：载波参数（初相位、振幅、频率）的变化就是一个码元<br>
+对于数字信号：一个数字脉冲就是一个码元<br>
+也就是说，一个码元所能携带的信息量是不一样的，而是取决于编码方式和调制方式</p>
+<h2 id="7-常见的编码方式">7、常见的编码方式</h2>
+<h3 id="1-不归零制">1、不归零制</h3>
+<p>信号在每个码元期间都不会回归零电平，比如正电平为 1 负电平为 0。编码效率最高，但存在收发双方同步的问题，需要再加上一条时钟线。</p>
+<h3 id="2-归零制">2、归零制</h3>
+<p>信号在每个码元期间会回归到零电平，相当于内同步，所以归零制也称作自同步信号。它的缺点是大部分的数据带宽都用来传输“归零”而浪费掉了。</p>
+<h3 id="3-曼切斯特编码">3、曼切斯特编码</h3>
+<p>每个码元中间时刻都会发生跳变，跳变既表示时钟信号，也表示数据，比如上为 1 下为 0。</p>
+<h3 id="4-差分曼切斯特编码">4、差分曼切斯特编码</h3>
+<p>同样每个码元中间时刻都会发生跳变，但与曼彻斯特编码不同的是中间时刻的跳动只表示时钟信号，数据的表示在于开始处是否有电平跳动，无跳动表示为 1，有跳动表示 0。在传输大量连续的 1 或者连续的 0 时，差分曼切斯特编码比曼彻斯特编码的变化少，在噪音情况下检测有无跳变比检测跳变方向更不容易出错，另外在传输介质接线错误导致电平翻转的情况下，差分曼切斯特编码仍然有效。</p>
+<h2 id="8-信道的极限容量">8、信道的极限容量</h2>
+<p>由多个平滑的正弦波叠加，最终形成一个近似方波的图像，这背后是傅里叶分析的核心思想：任何复杂的信号波形，都可以看作是许多不同频率、不同振幅的简单正弦波的“集合”。事实上，在数学上，要叠加出那种拥有完美直角、瞬间完成跳变的理想方波，需要无穷多个频率越来越高的正弦波（谐波）。任何一根物理的线缆，由于其自身的物理属性（如电容、电感效应），都像一个“过滤器”或“筛子”。它会让低频的信号顺利通过，但随着频率越来越高，它的“阻碍”作用就越来越强，高频信号会严重衰减，甚至完全通不过。</p>
+<h3 id="1-信号失真因素">1、信号失真因素</h3>
+<p>受码元传输速率、信号传输距离、噪声干扰、传播媒体的质量影响。如果每个码元所占的时间界限不明确，那么就会造成码间串扰。</p>
+<h3 id="2-奈氏准则无噪低通情况下码元的极限传输速率">2、奈氏准则（无噪低通情况下码元的极限传输速率）</h3>
+<p>每种信道能通过信号的频率是有限的，频率带宽的计算方式为:</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">带</mi><mi mathvariant="normal">宽</mi><mi>W</mi><mo>=</mo><msub><mi>f</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>−</mo><msub><mi>f</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><mi>W</mi><mo>=</mo><msub><mi>f</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>−</mo><msub><mi>f</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">带宽W=f_{max}-f_{min}W=f_{max}-f_{min} 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">带</span><span class="mord cjk_fallback">宽</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>奈奎斯特准则指出：信道的频率带宽是有上限的，不可能无限大，因此码元的传输速度也有上限。具体公式为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">（</mi><mi mathvariant="normal">没</mi><mi mathvariant="normal">噪</mi><mi mathvariant="normal">音</mi><mi mathvariant="normal">情</mi><mi mathvariant="normal">况</mi><mi mathvariant="normal">下</mi><mi mathvariant="normal">）</mi><msub><mi>C</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>=</mo><mn>2</mn><mi>W</mi><mi>B</mi><mi>a</mi><mi>u</mi><mi>d</mi><mo>(</mo><mi>B</mi><mi>a</mi><mi>u</mi><mi>d</mi><mi mathvariant="normal">是</mi><mi mathvariant="normal">码</mi><mi mathvariant="normal">元</mi><mi mathvariant="normal">传</mi><mi mathvariant="normal">输</mi><mi mathvariant="normal">速</mi><mi mathvariant="normal">率</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">单</mi><mi mathvariant="normal">位</mi><mo>)</mo><mo>=</mo><mn>2</mn><mi>W</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mi>N</mi><mo>(</mo><mi>N</mi><mi mathvariant="normal">为</mi><mi mathvariant="normal">码</mi><mi mathvariant="normal">元</mi><mi mathvariant="normal">可</mi><mi mathvariant="normal">表</mi><mi mathvariant="normal">示</mi><mi mathvariant="normal">信</mi><mi mathvariant="normal">息</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">个</mi><mi mathvariant="normal">数</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">（没噪音情况下）C_{max}=2W Baud(Baud是码元传输速率的单位)=2Wlog_2N(N 为码元可表示信息的个数)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord cjk_fallback">（</span><span class="mord cjk_fallback">没</span><span class="mord cjk_fallback">噪</span><span class="mord cjk_fallback">音</span><span class="mord cjk_fallback">情</span><span class="mord cjk_fallback">况</span><span class="mord cjk_fallback">下</span><span class="mord cjk_fallback">）</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault">a</span><span class="mord mathdefault">u</span><span class="mord mathdefault">d</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault">a</span><span class="mord mathdefault">u</span><span class="mord mathdefault">d</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">码</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">输</span><span class="mord cjk_fallback">速</span><span class="mord cjk_fallback">率</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">单</span><span class="mord cjk_fallback">位</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord cjk_fallback">为</span><span class="mord cjk_fallback">码</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">可</span><span class="mord cjk_fallback">表</span><span class="mord cjk_fallback">示</span><span class="mord cjk_fallback">信</span><span class="mord cjk_fallback">息</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">数</span><span class="mclose">)</span></span></span></span></span></p>
+<p>只要码元传输速率不超过奈氏准则的上限，就可以避免码间串扰。同时，如果码元能表示更多的比特量，那么信道传输的信息量也可以提升。当然提高带宽也是显然可以的。</p>
+<h3 id="3-香农公式高斯白噪声下信息极限传输速率">3、香农公式（高斯白噪声下信息极限传输速率）</h3>
+<p>虽然前文说可以提高信息传输速率的办法，但是我们并不能无限制地提高。因为实际的信道会有噪声（不可控）。香农公式指出频率带宽受限且有高斯白噪声干扰的信道的极限信息传输速率。具体公式为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>C</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>=</mo><mi>W</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo>(</mo><mn>1</mn><mo>+</mo><mfrac><mi>S</mi><mi>N</mi></mfrac><mo>)</mo><mo>(</mo><mi>b</mi><mi mathvariant="normal">/</mi><mi>s</mi><mo>)</mo><mspace linebreak="newline"></mspace><mi mathvariant="normal">信</mi><mi mathvariant="normal">噪</mi><mi mathvariant="normal">比</mi><mo>(</mo><mi>d</mi><mi>B</mi><mo>)</mo><mo>=</mo><mn>10</mn><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>10</mn></msub><mo>(</mo><mfrac><mi>S</mi><mi>N</mi></mfrac><mo>)</mo><mo>(</mo><mi>d</mi><mi>B</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">C_{max}=Wlog_2(1+\frac{S}{N})(b/s)\\信噪比(dB)=10log_{10}(\frac{S}{N})(dB)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathdefault">b</span><span class="mord">/</span><span class="mord mathdefault">s</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">信</span><span class="mord cjk_fallback">噪</span><span class="mord cjk_fallback">比</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span></span></p>
+<p>我们可以看出噪声对于信息传输的影响。如果我们的信息传输速率小于香农公式上限，那么就不会出现码间串扰。但实际信道中能达到的信息传输速率要更低，因为还会有其他影响因素（例如各种脉冲干扰和信号衰减等）。</p>
+<h2 id="9-信道复用技术">9、信道复用技术</h2>
+<h3 id="1-复发">1、复发</h3>
+<p>复用即在一条传输媒体上同时传输多路用户的信号，通过复用技术在传输媒体上建立多条通信信道，以便充分利用传输媒体的带宽。为了实现复用，我们需要在发送端使用一个复用器，在接受端使用一个分用器，尽管会增加成本，但相较之下还是便宜的。</p>
+<h3 id="2-频分复用-fdm">2、频分复用 FDM</h3>
+<p>所有用户同时占用不同频带资源发送数据。</p>
+<h3 id="3-时分复用-tdm">3、时分复用 TDM</h3>
+<p>时分复用的各用户所对应的时隙，构成了 TDM 帧。是周期出现的，为 TDM 帧的长度。由于计算机的突发性，导致使用效率并不是很高，如果在属于一个人的时隙里无数据发送，那么这个资源使用权就白白浪费掉了。<br>
+统计时分复用 STDM 是对时分复用的改进，各用户只要有数据就可以发给集中器（智能复用器），集中器按顺序缓存，然后依次扫描缓存，将缓存的数据放入 STDM 中，它并不分配固定时隙，而是动态分配，因此每个时隙中还需要有用户的地址信息，这是必要的开销。</p>
+<h3 id="4-波分复用-wdm">4、波分复用 WDM</h3>
+<p>即光的频分复用，在一根光纤上同时传输多个频率相近的载光波信号，如果一根光纤上复用多路光载波信号，则称为密集波分复用 DWDM。实现原理类似于三棱镜，由光复用器（合波器）和光分用器（分波器）组成。</p>
+<h3 id="5-码分复用-cdm">5、码分复用 CDM</h3>
+<p>常称为码分多址 CDMA。与 FDM 和 TDM 不同，CDMA 可以在相同的时间使用相同的频带进行通信，具有很强的抗干扰能力，其波谱类似于白噪声，不容易被别人发现。<br>
+CDMA 将每个比特时间划分为 m 个更短的时间端，被称为码片（chip，常取 64 和 128），每个站点都被指派唯一的 m 比特码片序列，在实际系统中，采用的是伪随机码序列，要发送 1 就发送 m 比特码片序列，要发送 0 就发送反码。每个站的码片不仅不同而且相互正交（码片序列中 1 记为 1，0 记为-1）。所以有：<br>
+<img src="https://zanezhao0708.github.io/post-images/1756867180147.webp" alt="" loading="lazy"></p>
+<!-- more -->
+
+                </div>
+            </article>
+        </main>
+    </div>
+    <div class="doc-footer-nav mdui-color-theme">
+        <div class="mdui-container">
+            <div class="mdui-row">
+                
+                <div class="mdui-col-xs-2 mdui-col-sm-6 doc-footer-nav-left"></div>
+                
+                
+                <a href="https://zanezhao0708.github.io/post/ji-suan-ji-chang-yong-liang-hua-zhi-biao/" class="mdui-ripple mdui-color-theme mdui-col-xs-10 mdui-col-sm-6 doc-footer-nav-right">
+                    <div class="doc-footer-nav-text">
+                        <i class="mdui-icon material-icons">arrow_forward</i>
+                        <span class="doc-footer-nav-direction">下一篇文章</span>
+                        <div class="doc-footer-nav-chapter">计算机常用量化指标</div>
+                    </div>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+    <br>
+    
+        
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+    var gitalk = new Gitalk({
+        clientID: 'Ov23liROjCF7jEtZQMXC',
+        clientSecret: 'a5a1680fd5bf180a6d350a08c107b5ebe77f2173',
+        repo: 'blog-comment',
+        owner: 'WUQ1UFENG',
+        admin: ['WUQ1UFENG'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+
+</script>
+
+        
+
+        
+    
+    
+    <div id="vue_app">
+        <!--头像-->
+        <div class="mdui-card">
+            <!-- 卡片头部，包含头像、标题、副标题 -->
+            <div class="mdui-card-header">
+                <img style="cursor:pointer" @click="avatarOpen" class="mdui-card-header-avatar" :src="avatar"/>
+                <div class="mdui-card-header-title">评论列表</div>
+                <div class="mdui-card-header-subtitle"><-点击图标可以更换头像哦！！~~</div>
+            </div>
+        </div>
+        <br/>
+
+        <!--发表评论框-->
+        <reply @submit="replySubmit"></reply>
+
+        <!--评论列表-->
+        <div v-for="(v,k) in list">
+            <br>
+            <div class="mdui-card">
+                <!-- 卡片头部，包含头像、标题、副标题 -->
+                <div class="mdui-card-header">
+                    <img class="mdui-card-header-avatar" :src="v.attributes.img"/>
+                    <div v-if="v.attributes.website" class="mdui-text-color-theme mdui-card-header-title mdui-typo">
+                        <a target="view_window" :href="v.attributes.website">{{v.attributes.nickname}}</a>
+                        <span v-if="v.attributes.is_author" class="mdui-text-color-theme">（博主）</span>
+                    </div>
+                    <div v-else class="mdui-card-header-title">
+                        <span>{{v.attributes.nickname}}</span>
+                        <span v-if="v.attributes.is_author" class="mdui-text-color-theme">（博主）</span>
+                    </div>
+                    <div class="mdui-card-header-subtitle">{{time_format("Y年m月d日 H点s分",v.attributes.time)}}</div>
+                </div>
+
+                <!-- 卡片的内容 -->
+                <div class="mdui-card-content" v-html="v.attributes.txt"></div>
+
+                <div>
+                    <ul class="mdui-list" v-for="vv in JSON.parse(v.attributes.reply_son)">
+                        <li class="mdui-list-item">
+                            <div class="mdui-list-item-avatar"><img :src="vv.img"/></div>
+                            <div class="mdui-list-item-content"  style="height: auto">
+                                <div v-if="vv.website" class="mdui-list-item-title mdui-typo">
+                                    <a target="view_window" :href="vv.website" class="mdui-text-color-theme">{{vv.nickname}}</a>
+                                    <span v-if="vv.is_author" class="mdui-text-color-theme">（博主）</span>
+                                    <span class="mdui-typo-caption-opacity">{{time_format("Y年m月d日 H点s分",vv.time)}}</span>
+                                </div>
+                                <div v-else class="mdui-list-item-title">
+                                    {{vv.nickname}}
+                                    <span v-if="vv.is_author" class="mdui-text-color-theme">（博主）</span>
+                                    <span class="mdui-typo-caption-opacity">{{time_format("Y年m月d日 H点s分",vv.time)}}</span>
+                                </div>
+                                <div class="mdui-list-item-text mdui-typo">
+                                    <a v-if="vv.reply_website" :href="vv.reply_website" target="view_window" class="mdui-typo">@{{vv.reply_nickname}}</a>
+                                    <a v-else class="mdui-typo">@{{vv.reply_nickname}}</a>：
+                                    <span class="reply_son" v-html="vv.txt"></span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button
+                                        @click="reply2(k,vv.id,vv.nickname,vv.email,vv.website)"
+                                        class="mdui-btn mdui-text-color-pink"
+                                >
+                                    回复
+                                </button>
+                            </div>
+                        </li>
+                        <li class="mdui-divider-inset mdui-m-y-0"></li>
+                    </ul>
+                </div>
+
+                <div class="mdui-card-actions">
+                    <button
+                            @click="reply2(k,v.id,v.attributes.nickname,v.attributes.email,v.attributes.website)"
+                            style="float:right "
+                            class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent"
+                    >
+                        回复
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div style="text-align:center" v-if="list.length!=0">
+            <button @click="loadMore" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">加载更多</button>
+        </div>
+
+        <!--回复的弹窗-->
+        <div class="mdui-dialog" id="reply_mode">
+            <div class="mdui-dialog-title">
+                <span>回复</span>
+                <span class="mdui-text-color-theme">@{{replyList.nickname}}</span>
+                <span style="float:right ">
+                    <button class="mdui-btn"  @click="reply2Close">取消回复</button>
+                </span>
+            </div>
+            <reply @submit="reply2Submit"/>
+        </div>
+
+        <!--选头像的弹窗-->
+        <div class="mdui-dialog" id="avatar_mode">
+            <div class="mdui-dialog-title">
+                选择头像
+                <span style="float:right ">
+                    <button class="mdui-btn"  @click="avatarClose">取消选择</button>
+                </span>
+            </div>
+            <avatar @choice="avatarChoice"></avatar>
+        </div>
+    </div>
+    <object data="/media/js/modular/reply/reply.html" width="0" height="0" id="reply_object"></object>
+    <object data="/media/js/modular/emoji/emoji.html" width="0" height="0" id="emoji_object"></object>
+    <object data="/media/js/modular/avatar/avatar.html" width="0" height="0" id="avatar_object"></object>
+    
+</div>
+<footer class="mdui-container footer ">
+<!--    <div class="head_card-offset"></div>-->
+    <div class="mdui-row mdui-row-gapless">
+        <div class="k-container">
+            <img width="100%" src="/media/img/skirt.png">
+        </div>
+    </div>
+
+    <div class="site-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+</footer>
+<div id="landlord" style="left:5px;bottom:0px;">
+    <div class="message" style="opacity:0"></div>
+    <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
+    <div class="live_talk_input_body">
+        <div class="live_talk_input_name_body">
+            <input name="name" type="text" class="live_talk_name white_input" id="AIuserName" autocomplete="off" placeholder="你的名字" />
+        </div>
+        <div class="live_talk_input_text_body">
+            <input name="talk" type="text" class="live_talk_talk white_input" id="AIuserText" autocomplete="off" placeholder="要和我聊什么呀？"/>
+            <button type="button" class="live_talk_send_btn" id="talk_send">发送</button>
+        </div>
+    </div>
+    <input name="live_talk" id="live_talk" value="1" type="hidden" />
+    <div class="live_ico_box">
+        <div class="live_ico_item type_info" id="showInfoBtn"></div>
+        <div class="live_ico_item type_talk" id="showTalkBtn"></div>
+        <div class="live_ico_item type_music" id="musicButton"></div>
+        <div class="live_ico_item type_youdu" id="youduButton"></div>
+        <div class="live_ico_item type_quit" id="hideButton"></div>
+        <input name="live_statu_val" id="live_statu_val" value="0" type="hidden" />
+        <audio src="" style="display:none;" id="live2d_bgm" data-bgm="0" preload="none"></audio>
+        <input name="live2dBGM" value="https://img.apa70.com/123.mp3" type="hidden">
+        <input name="live2dBGM" value="https://img.apa70.com/123.mp3" type="hidden">
+        <input id="duType" value="douqilai,l2d_caihong" type="hidden">
+    </div>
+</div>
+<div id="open_live2d">召唤伊斯特瓦尔</div>
+<script>
+    var message_Path = '/media/live2d/';//资源目录，如果目录不对请更改
+    var talkAPI = "";//如果有类似图灵机器人的聊天接口请填写接口路径
+</script>
+<!--<script src="/media/js/jquery-3.3.1.min.js"></script>-->
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="/media/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="/media/live2d/js/message.js"></script>
+
+</body>
+<script src="/media/mdui/js/mdui.min.js"></script>
+<script src="/media/layer/layer.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@4.11.1/dist/av-min.js"></script>
+<script src="//unpkg.com/vue@next"></script>
+<script>
+    
+    //初始化leancloud的SDK
+    AV.init({
+        appId: "",
+        appKey: "",
+        serverURL: ""
+    });
+    
+</script>
+<script type="module" src="/media/js/post.js"></script>
+</html>

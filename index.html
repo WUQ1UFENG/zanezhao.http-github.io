@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>舞秋风Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/media/mdui/css/mdui.min.css">
+    <link rel="stylesheet" href="/media/css/index.css">
+    <link rel="stylesheet" href="/media/live2d/css/live2d.css" />
+    
+    <style>
+        #centerbg{
+            background-image: url(/media/img/centerbg.jpg);
+        }
+        a {
+            color: #B9B9B9;
+        }
+
+        /* ===== 右侧日文竖排文字样式 开始 ===== */
+        .vertical-text-container {
+          position: fixed;
+          top: 50%;
+          right: 60px;
+          transform: translateY(-50%);
+          display: flex;
+          flex-direction: row-reverse;
+          gap: 30px;
+          z-index: 1001;
+          pointer-events: none;
+          -webkit-text-stroke: 0.3px black; 
+        }
+        /* ===== 右侧日文竖排文字样式 结束 ===== */
+
+        /* ===== 左侧日文竖排文字样式 开始 ===== */
+        .vertical-text-container-left {
+          position: fixed;
+          top: 50%;
+          left: 50px;
+          transform: translateY(-50%);
+          display: flex;
+          flex-direction: row-reverse;
+          gap: 30px;
+          z-index: 1001;
+          pointer-events: none;
+          -webkit-text-stroke: 0.3px black; 
+        }
+        /* ===== 左侧日文竖排文字样式 结束 ===== */
+
+        /* ===== 通用竖排文字样式 开始 ===== */
+        .vertical-text {
+          writing-mode: vertical-rl;
+          color: #D94040;
+          text-shadow: 0 0 2px #FFFFFF, 0 0 6px #FFD700, 0 0 12px #FF8C00;
+          font-size: 22px;
+          font-family: 'Yu Mincho', 'Yu Gothic', 'Hiragino Mincho ProN', 'MS Mincho', serif;
+          white-space: nowrap;
+        }
+        .vertical-text p {
+          margin: 0;
+          padding-bottom: 3em;
+        }
+        /* ===== 通用竖排文字样式 结束 ===== */
+        
+        /* ===== 网格布局样式 开始 ===== */
+        .k-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        /* The following styles assume your posts inside 'index-list' will use these class names, like the Bilibili card example */
+        .bili-card {
+            background-color: #ffffff; border-radius: 8px; overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s ease-in-out;
+            display: flex; flex-direction: column; text-decoration: none;
+        }
+        .bili-card:hover {
+            transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .bili-card-image {
+            width: 100%; aspect-ratio: 16 / 9;
+        }
+        .bili-card-image img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .bili-card-content { padding: 12px; }
+        .bili-card-title {
+            font-size: 16px; font-weight: 600; color: #181818; margin: 0;
+            line-height: 1.5em; height: 3em; display: -webkit-box;
+            -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+            overflow: hidden; text-overflow: ellipsis;
+        }
+        .bili-card-meta {
+            font-size: 13px; color: #888888; margin-top: 8px;
+        }
+        /* ===== 网格布局样式 结束 ===== */
+        .filter-grid::after {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class=" mdui-loaded">
+<header class="mdui-toolbar mdui-color-theme mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide" style="z-index: 1000">
+    <a href="javascript:;" mdui-drawer="{target: '#left-drawer',overlay:true}" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+    
+    <a href="/" class="mdui-typo-title" style="text-decoration: none; color: inherit;">舞秋风Blog</a>
+    
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
+</header>
+<div class="meteor">
+    <div class="red" style="left:600px;"></div>
+    <div class="orange" style="left:700px;"></div>
+    <div class="yellow" style="left:900px;"></div>
+    <div class="green" style="left:1100px;"></div>
+    <div class="cyan" style="left:1260px;"></div>
+    <div class="blue" style="left:1400px;"></div>
+    <div class="purple" style="left:1500px;"></div>
+    <div class="red" style="left:0px;"></div>
+    <div class="orange" style="left:100px;"></div>
+    <div class="yellow" style="left:300px;"></div>
+    <div class="green" style="left:500px;"></div>
+    <div class="cyan" style="left:660px;"></div>
+    <div class="blue" style="left:800px;"></div>
+    <div class="purple" style="left:900px;"></div>
+    <div class="red" style="left:1200px;"></div>
+    <div class="orange" style="left:1300px;"></div>
+    <div class="yellow" style="left:1500px;"></div>
+    <div class="green" style="left:1700px;"></div>
+    <div class="cyan" style="left:1860px;"></div>
+    <div class="blue" style="left:2000px;"></div>
+    <div class="purple" style="left:2100px;"></div>
+</div>
+<div class="mdui-drawer mdui-color-white mdui-drawer-full-height mdui-drawer-close" id="left-drawer">
+    <ul class="mdui-list">
+        <li class="mdui-subheader">菜单</li>
+        
+        <li class="mdui-list-item mdui-ripple">
+            <a href="/" class="mdui-list-item-content">首页</a>
+        </li>
+        
+        <li class="mdui-list-item mdui-ripple">
+            <a href="/archives" class="mdui-list-item-content">归档</a>
+        </li>
+        
+        <li class="mdui-list-item mdui-ripple">
+            <a href="/tags" class="mdui-list-item-content">标签</a>
+        </li>
+        
+    </ul>
+</div>
+
+<div class="headertop filter-grid" style="height: auto">
+    <figure id="centerbg" class="centerbg" style="">
+        <div class="focusinfo">
+            <div class="header-tou">
+                <a href=">">
+                    <img src="/images/avatar.png">
+                </a>
+            </div>
+            <div class="header-info">
+                <p>Wanna change and make the World better</p>
+            </div>
+            <div class="top-social">
+                
+                
+                <li>
+                    <a href="https://space.bilibili.com/399681728?spm_id_from=333.1007.0.0" target="_blank" class="social-bili" title="bilibili">
+                        <div class="www" id="bilibili"></div>
+                    </a>
+                </li>
+                
+                
+                 
+                <li>
+                    <a href="https://www.zhihu.com/people/no-6-86" target="_blank" class="social-bili" title="zhihu">
+                        <div class="www" id="zhihu"></div>
+                    </a>
+                </li>
+                
+                
+                <li>
+                    <a href="https://steamcommunity.com/profiles/76561199514660400/" target="_blank" class="social-wangyiyun" title="Twitter">
+                        <div class="www" id="steam"></div>
+                    </a>
+                </li>
+                
+                
+                
+                
+
+            </div>
+        </div>
+    </figure>
+</div>
+<div class="mdui-container">
+    <div class="mdui-row mdui-row-gapless">
+        <div class="k-container">
+        
+            
+    <a href="https://zanezhao0708.github.io/post/ji-suan-ji-wang-luo-zong-jie/" class="bili-card">
+        
+        <div class="bili-card-image">
+            <img src="https://img-baofun.zhhainiao.com/fs/ba749418fdabc077b0c736d20f7d2d5b.jpg" alt="计算机网络总结">
+        </div>
+
+        <div class="bili-card-content">
+            <h3 class="bili-card-title">计算机网络总结</h3>
+            
+            <p class="bili-card-meta">
+                <time>2025-07-01</time>
+            </p>
+        </div>
+
+    </a>
+
+    <a href="https://zanezhao0708.github.io/post/ji-suan-ji-chang-yong-liang-hua-zhi-biao/" class="bili-card">
+        
+        <div class="bili-card-image">
+            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.e16cc3229f14a20f9c5bc32dd5b402c1?rik=js4FVTyAqB4IjQ&amp;riu=http%3a%2f%2fi0.hdslb.com%2fbfs%2farticle%2f5c6cc55d7e304df3febe0805456a464bd3ff73d7.jpg&amp;ehk=qOjg%2fRQz6%2bBXgSK93ZBFPNnkLpawLKHOj3ZbTi8owmw%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="计算机常用量化指标">
+        </div>
+
+        <div class="bili-card-content">
+            <h3 class="bili-card-title">计算机常用量化指标</h3>
+            
+            <p class="bili-card-meta">
+                <time>2024-09-03</time>
+            </p>
+        </div>
+
+    </a>
+
+
+<div class="head_card-offset" style="display: none;"></div>
+        </div>
+    </div>
+    <div class="mdui-row">
+    </div>
+</div>
+
+<div class="vertical-text-container-left">
+    <div class="vertical-text">
+        <p>万古長空</p><p>一朝風月</p><p>人はただ</p><p>己を時と見るなり</p><p>世界ぜんたいの幸福を求め</p><p>そういうものに</p><p>わたしはなりたい</p>
+    </div>
+</div>
+<div class="vertical-text-container">
+    <div class="vertical-text">
+        <p>智に働けば角が立つ。</p><p>情に棹させば流される。</p><p>意地を通せば窮屈だ。</p><p>とかく人の世は住みにくい。</p>
+    </div>
+</div>
+
+<footer class="mdui-container footer ">
+<!--    <div class="head_card-offset"></div>-->
+    <div class="mdui-row mdui-row-gapless">
+        <div class="k-container">
+            <img width="100%" src="/media/img/skirt.png">
+        </div>
+    </div>
+
+    <div class="site-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+</footer>
+<div id="landlord" style="left:5px;bottom:0px;">
+    <div class="message" style="opacity:0"></div>
+    <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
+    <div class="live_talk_input_body">
+        <div class="live_talk_input_name_body">
+            <input name="name" type="text" class="live_talk_name white_input" id="AIuserName" autocomplete="off" placeholder="你的名字" />
+        </div>
+        <div class="live_talk_input_text_body">
+            <input name="talk" type="text" class="live_talk_talk white_input" id="AIuserText" autocomplete="off" placeholder="要和我聊什么呀？"/>
+            <button type="button" class="live_talk_send_btn" id="talk_send">发送</button>
+        </div>
+    </div>
+    <input name="live_talk" id="live_talk" value="1" type="hidden" />
+    <div class="live_ico_box">
+        <div class="live_ico_item type_info" id="showInfoBtn"></div>
+        <div class="live_ico_item type_talk" id="showTalkBtn"></div>
+        <div class="live_ico_item type_music" id="musicButton"></div>
+        <div class="live_ico_item type_youdu" id="youduButton"></div>
+        <div class="live_ico_item type_quit" id="hideButton"></div>
+        <input name="live_statu_val" id="live_statu_val" value="0" type="hidden" />
+        <audio src="" style="display:none;" id="live2d_bgm" data-bgm="0" preload="none"></audio>
+        <input name="live2dBGM" value="https://img.apa70.com/123.mp3" type="hidden">
+        <input name="live2dBGM" value="https://img.apa70.com/123.mp3" type="hidden">
+        <input id="duType" value="douqilai,l2d_caihong" type="hidden">
+    </div>
+</div>
+<div id="open_live2d">召唤伊斯特瓦尔</div>
+<script>
+    var message_Path = '/media/live2d/';//资源目录，如果目录不对请更改
+    var talkAPI = "";//如果有类似图灵机器人的聊天接口请填写接口路径
+</script>
+<!--<script src="/media/js/jquery-3.3.1.min.js"></script>-->
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="/media/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="/media/live2d/js/message.js"></script>
+
+</body>
+<script src="/media/mdui/js/mdui.min.js"></script>
+<script src="/media/js/index.js"></script>
+</html>
